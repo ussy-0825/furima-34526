@@ -3,13 +3,13 @@
 | Column                 | Type       | Options     |
 | ---------------------- | ---------- | ----------- |
 | nickname               | string     | null: false |
-| e-mail                 | string     | null: false |
-| password               | string     | null: false |
-| last-name-full-width   | string     | null: false |
-| first-name-full-width  | string     | null: false |
-| last-name-kana         | string     | null: false |
-| first-name-kana        | string     | null: false |
-| birthday               | string     | null: false |
+| email                  | string     | null: false |
+| encrypted_password     | string     | null: false |
+| last-name_full_width   | string     | null: false |
+| first-name_full_width  | string     | null: false |
+| last-name_kana         | string     | null: false |
+| first-name_kana        | string     | null: false |
+| birthday               | date       | null: false |
 
 ### Association
 - has_many :items
@@ -19,14 +19,14 @@
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| item-name       | string     | null: false                    |
-| item-text       | text       | null: false                    |
+| name            | string     | null: false                    |
+| text            | text       | null: false                    |
 | price           | integer    | null: false                    |
 | category_id     | integer    | null: false                    |
 | status_id       | integer    | null: false                    |
 | prefectures_id  | integer    | null: false                    |
-| delivery-fee-id | integer    | null: false                    |
-| shipping-id     | integer    | null: false                    |
+| delivery_fee_id | integer    | null: false                    |
+| shipping_id     | integer    | null: false                    |
 | user            | references | null: false, foreign_key: true |
 
 ### Association
@@ -43,14 +43,14 @@
 ### Association
 - belongs_to :item
 - belongs_to :user
-- has_one :deliveries
+- has_one :delivery
 
 ## deliveriesテーブル
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
-| postal-code    | string     | null: false                    |
-| prefectures-id | integer    | null: false                    |
+| postal_code    | string     | null: false                    |
+| prefectures_id | integer    | null: false                    |
 | city           | string     | null: false                    |
 | address        | string     | null: false                    |
 | building       | string     |                                |
