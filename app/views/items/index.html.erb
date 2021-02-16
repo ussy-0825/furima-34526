@@ -128,7 +128,7 @@
 
       <% @items.each do |item| %>
         <li class='list'>
-         <%= link_to "#" do %>
+         <%= link_to item_path(item.id) do %>
           <div class='item-img-content'>
            <%= image_tag item.image, class: "item-img" %>
 
@@ -155,8 +155,7 @@
       <% end %>
       </li>
 
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
+      <%# 以下、商品が出品されていない場合にダミー商品を表示させる処理 %>
       <% if @items.blank? %>
        <li class='list'>
         <%= link_to '#' do %>
@@ -175,9 +174,8 @@
           </div>
         <% end %>
       <% end %>
-      < </li>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %> 
+
+       </li>
     </ul>
   </div>
   <%# /商品一覧 %>
