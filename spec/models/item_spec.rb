@@ -36,7 +36,7 @@ RSpec.describe Item, type: :model do
       it 'category_idが0以外でないと登録できない' do
         @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category Select")
+        expect(@item.errors.full_messages).to include('Category Select')
       end
       it '商品の状態が選択されていなければ出品ができない' do
         @item.status_id = nil
@@ -46,7 +46,7 @@ RSpec.describe Item, type: :model do
       it 'status_idが0以外でないと登録できない' do
         @item.status_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status Select")
+        expect(@item.errors.full_messages).to include('Status Select')
       end
       it '配送料の負担について選択されていなければ出品ができない' do
         @item.delivery_fee_id = nil
@@ -56,7 +56,7 @@ RSpec.describe Item, type: :model do
       it 'delivery_fee_idが0以外でないと登録できない' do
         @item.delivery_fee_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery fee Select")
+        expect(@item.errors.full_messages).to include('Delivery fee Select')
       end
       it '発送元の選択がされていなければ出品できない' do
         @item.prefectures_id = nil
@@ -66,7 +66,7 @@ RSpec.describe Item, type: :model do
       it 'prefectures_idが0以外でないと登録できない' do
         @item.prefectures_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefectures Select")
+        expect(@item.errors.full_messages).to include('Prefectures Select')
       end
       it '発送までの日数について選択されていなければ出品できない' do
         @item.shipping_id = nil
@@ -76,7 +76,7 @@ RSpec.describe Item, type: :model do
       it 'shipping_idが0以外でないと登録できない' do
         @item.shipping_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping Select")
+        expect(@item.errors.full_messages).to include('Shipping Select')
       end
       it '販売価格が入力されていなければ出品できない' do
         @item.price = nil
@@ -99,14 +99,14 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price Half-width number')
       end
       it '販売価格が半角英語だけでは登録できない' do
-        @item.price = "aaaa"
+        @item.price = 'aaaa'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Half-width number")
+        expect(@item.errors.full_messages).to include('Price Half-width number')
       end
       it '販売価格が半角英数混合では登録できない' do
-        @item.price = "1000aaa"
+        @item.price = '1000aaa'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Half-width number")
+        expect(@item.errors.full_messages).to include('Price Half-width number')
       end
     end
   end
