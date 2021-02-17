@@ -34,6 +34,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to root_path
+  end
+
   private
 
   def item_params
@@ -45,11 +51,8 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-
   def edit_access_check
     item = Item.find(params[:id])
-    if current_user.id != item.user_id
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id != item.user_id
   end
 end
