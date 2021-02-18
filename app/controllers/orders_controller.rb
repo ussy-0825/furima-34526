@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   def index
     @item = Item.find(item_params[:item_id])
+    @order_delivery = Orderdelivery.new
   end
 
   def create
@@ -22,7 +23,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.permit(:postal_code, :prefectures_id, :city, :address, :building, :phone, :item_id).merge(user_id: current_user.id)
+    params.require(:orderdelivery).permit(:postal_code, :prefectures_id, :city, :address, :building, :phone).merge(item_id: params[:item_id], user_id: current_user.id)
   end
 
 end
