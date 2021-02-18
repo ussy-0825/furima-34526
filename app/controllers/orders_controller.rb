@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :move_item_owner, only: [:index, :create]
 
   def index
-    @item = Item.find(item_params[:item_id])
+    @item = Item.find(params[:item_id])
     @order_delivery = Orderdelivery.new
   end
 
@@ -21,10 +21,6 @@ class OrdersController < ApplicationController
 
   private
 
-  def item_params
-    params.permit(:item_id)
-  end
-
   def order_params
     params.require(:orderdelivery).permit(:postal_code, :prefectures_id, :city, :address, :building, :phone).merge(item_id: params[:item_id], user_id: current_user.id, token: params[:token])
   end
@@ -39,8 +35,10 @@ class OrdersController < ApplicationController
   end
 
   def move_item_owner
-    item_owner = Item.find(item_params[:item_id])
+    item_owner = Item.find(params[:item_id])
     if current_user.id == item_owner.user_id
+      redirect_to root_path
+    elsif Order.exists?(item_id: item_owner.id)
       redirect_to root_path
     end
   end
