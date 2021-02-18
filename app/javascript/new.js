@@ -7,5 +7,5 @@ function feeCalc () {
     const subtraction = document.getElementById("profit")
     subtraction.innerHTML = inputValue - Math.floor(inputValue * 0.1)
   });
-}
+};
 window.addEventListener('load', feeCalc );
