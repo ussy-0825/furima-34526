@@ -53,6 +53,8 @@ class ItemsController < ApplicationController
 
   def access_check
     item = Item.find(params[:id])
-    redirect_to root_path if current_user.id != item.user_id
+    if current_user.id != item.user_id || Order.exists?(item_id: item.id)
+      redirect_to root_path
+    end
   end
 end
