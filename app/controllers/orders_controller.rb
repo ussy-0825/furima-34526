@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :move_item_owner, only: [:index, :create]
-  before_action :item_params, only: [:index, :create]
+  before_action :item_data_params, only: [:index, :create]
 
   def index
     @order_delivery = Orderdelivery.new
@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
 
   private
 
-  def item_params
+  def item_data_params
     @item = Item.find(params[:item_id])
   end
 
