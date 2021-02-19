@@ -7,7 +7,6 @@ FactoryBot.define do
     address { '〇〇町' }
     building { '〇〇ビル' }
     phone { '09011111111' }
-    user_id { 1 }
-    item_id { 1 }
+
   end
 end

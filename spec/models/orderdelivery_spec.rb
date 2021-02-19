@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Orderdelivery, type: :model do
   before do
-    @orderdelivery = FactoryBot.build(:orderdelivery)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @orderdelivery = FactoryBot.build(:orderdelivery, user_id: @user.id, item_id: @item.id)
+    sleep(0.5)
   end
 
   describe '商品購入機能' do
@@ -42,6 +45,11 @@ RSpec.describe Orderdelivery, type: :model do
         @orderdelivery.valid?
         expect(@orderdelivery.errors.full_messages).to include("City can't be blank")
       end
+      it '番地が入力されていなければ購入できない' do
+        @orderdelivery.address = nil
+        @orderdelivery.valid?
+        expect(@orderdelivery.errors.full_messages).to include("Address can't be blank")
+      end
       it '電話番号が入力されていなければ購入できない' do
         @orderdelivery.phone = nil
         @orderdelivery.valid?
@@ -56,6 +64,21 @@ RSpec.describe Orderdelivery, type: :model do
         @orderdelivery.phone = 'ゼロキューゼロイチイチ'
         @orderdelivery.valid?
         expect(@orderdelivery.errors.full_messages).to include('Phone number Input only number')
+      end
+      it '電話番号が英数混合では購入できない' do
+        @orderdelivery.phone = '090aaaaaaaa'
+        @orderdelivery.valid?
+        expect(@orderdelivery.errors.full_messages).to include("Phone number Input only number")
+      end
+      it 'user_idが空では購入できない' do
+        @orderdelivery.user_id = nil
+        @orderdelivery.valid?
+        expect(@orderdelivery.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空では購入できない' do
+        @orderdelivery.item_id = nil
+        @orderdelivery.valid?
+        expect(@orderdelivery.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
