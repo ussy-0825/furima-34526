@@ -22,16 +22,18 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:orderdelivery).permit(:postal_code, :prefectures_id, :city, :address, :building, :phone).merge(item_id: params[:item_id], user_id: current_user.id, token: params[:token])
+    params.require(:orderdelivery).permit(:postal_code, :prefectures_id, :city, :address, :building, :phone).merge(
+      item_id: params[:item_id], user_id: current_user.id, token: params[:token]
+    )
   end
 
   def buy_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-      Payjp::Charge.create(
-        amount: Item.find(order_params[:item_id]).price,
-        card: order_params[:token],
-        currency: 'jpy'
-      )
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp::Charge.create(
+      amount: Item.find(order_params[:item_id]).price,
+      card: order_params[:token],
+      currency: 'jpy'
+    )
   end
 
   def move_item_owner
@@ -42,5 +44,4 @@ class OrdersController < ApplicationController
       redirect_to root_path
     end
   end
-
 end

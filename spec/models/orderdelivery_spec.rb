@@ -11,8 +11,8 @@ RSpec.describe Orderdelivery, type: :model do
         expect(@orderdelivery).to be_valid
       end
       it '建物名が入力されていなくても購入できる' do
-       @orderdelivery.building = nil
-       expect(@orderdelivery).to be_valid 
+        @orderdelivery.building = nil
+        expect(@orderdelivery).to be_valid
       end
     end
 
@@ -28,14 +28,14 @@ RSpec.describe Orderdelivery, type: :model do
         expect(@orderdelivery.errors.full_messages).to include("Postal code can't be blank")
       end
       it '郵便番号に-(ハイフン)が無ければ購入できない' do
-        @orderdelivery.postal_code = "1111111"
+        @orderdelivery.postal_code = '1111111'
         @orderdelivery.valid?
-        expect(@orderdelivery.errors.full_messages).to include("Postal code code Input correctly")
+        expect(@orderdelivery.errors.full_messages).to include('Postal code code Input correctly')
       end
       it '都道府県が選択されていなければ購入できない' do
         @orderdelivery.prefectures_id = 0
         @orderdelivery.valid?
-        expect(@orderdelivery.errors.full_messages).to include("Prefectures Select")
+        expect(@orderdelivery.errors.full_messages).to include('Prefectures Select')
       end
       it '市区町村が入力されていなければ購入できない' do
         @orderdelivery.city = nil
@@ -48,16 +48,15 @@ RSpec.describe Orderdelivery, type: :model do
         expect(@orderdelivery.errors.full_messages).to include("Phone can't be blank")
       end
       it '電話番号が半角数字でなければ購入できない' do
-        @orderdelivery.phone = "０９０１１１１１１１１"
+        @orderdelivery.phone = '０９０１１１１１１１１'
         @orderdelivery.valid?
-        expect(@orderdelivery.errors.full_messages).to include("Phone number Input only number")
+        expect(@orderdelivery.errors.full_messages).to include('Phone number Input only number')
       end
       it '電話番号が半角数字でなければ購入できない' do
-        @orderdelivery.phone = "ゼロキューゼロイチイチ"
+        @orderdelivery.phone = 'ゼロキューゼロイチイチ'
         @orderdelivery.valid?
-        expect(@orderdelivery.errors.full_messages).to include("Phone number Input only number")
+        expect(@orderdelivery.errors.full_messages).to include('Phone number Input only number')
       end
     end
-
   end
 end
