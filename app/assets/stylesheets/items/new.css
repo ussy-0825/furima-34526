@@ -227,3 +227,13 @@
 .inc {
   font-size: 13px;
 }
+
+/* プレビュー画像のリサイズを行うcss ↓ */
+.img-list {
+  width: 100%;
+}
+
+.img-resize {
+  width: 150px;
+}
+/* プレビュー画像のリサイズを行うcss ↑ */
