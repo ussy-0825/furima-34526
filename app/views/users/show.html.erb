@@ -1,0 +1,22 @@
+<%= render "devise/shared/header" %>
+<div class="AccountPage">
+  <div class="AccountPage__title">
+    <h1>マイページ</h1>
+  </div><br>
+  <div class="Account__info">
+    <h2>ユーザー情報</h2>
+  </div>
+  <div class="AccountPage__form">
+    <table class="user_table">
+      <tr>
+        <td>ユーザー名</td><td><%= @user.nickname %></td>
+      </tr>
+    </table>
+    <table class="user_table">
+      <tr>
+        <td>メールアドレス</td><td><%= @user.email %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<%= render "devise/shared/footer" %>

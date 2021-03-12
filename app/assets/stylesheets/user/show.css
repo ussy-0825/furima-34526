@@ -1,0 +1,22 @@
+.AccountPage__title,
+.Account__info {
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: "Source Sans Pro", Helvetica, Arial, "æ¸¸ã‚´ã‚·ãƒƒã‚¯ä½“", "YuGothic", "ãƒ¡ã‚¤ãƒªã‚ª", "Meiryo", sans-serif;
+}
+
+.AccountPage__title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.user_table {
+  border-collapse: collapse;
+  border: 1px solid black;
+  width: 400px;
+  margin: 0 auto 10px;
+}
+
+.user_table td {
+  padding: 10px;
+}
